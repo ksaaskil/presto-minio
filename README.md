@@ -10,6 +10,11 @@ Hadoop+Hive configuration is based on [this Dockerfile from Hive](https://github
 
 Presto configuration is based on the [official documentation](https://prestodb.io/docs/current/installation/deployment.html).
 
+## Resources
+
+- [Interactive SQL query with Apache Presto on MinIO Cloud Storage](https://blog.min.io/interactive-sql-query-with-presto-on-minio-cloud-storage/)
+- [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
+
 ##  Running full stack
 
 Run `docker-compose up --abort-on-container-exit`.
