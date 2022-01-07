@@ -27,7 +27,7 @@ def make_df():
 
 
 def read_df():
-    df = pd.read_csv(CSV, header=0, names=["ID", "first_name", "last_name"])
+    df = pd.read_csv(CSV, header=None, names=["id", "fname", "lname"])
     return df
 
 

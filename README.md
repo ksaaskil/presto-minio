@@ -19,6 +19,7 @@ Presto configuration is based on the [official documentation](https://prestodb.i
 - [Hive Metastore: Why It's Still Here and What Can Replace it?](https://lakefs.io/hive-metastore-why-its-still-here-and-what-can-replace-it/)
 - [Quick Guide for running Presto Locally on S3](https://lakefs.io/the-quick-guide-for-running-presto-locally-on-s3/)
 - [`blog-presto-local`](https://github.com/treeverse/blog-presto-local): The accompanying repository
+- [Metadata Management: Hive Metastore vs. AWS Glue](https://lakefs.io/metadata-management-hive-metastore-vs-aws-glue/)
 
 ##  Running full stack
 
@@ -43,7 +44,7 @@ hive> create external table customer_text(id string, fname string, lname string)
 hive> select * from customer_text;
 ```
 
-Next, query the data from Presto. Run `docker-compose exec presto /usr/local/bin/presto` and make queries:
+Next, query the data from Presto. Run `docker-compose exec presto /usr/local/bin/presto --catalog minio --schema default` and make queries:
 
 ```
 presto> use minio.default;
@@ -81,8 +82,10 @@ presto:default> select * from customer_orc;
 
 ### Parquet
 
+Create table from Parquet data in `s3a://parquet`:
+
 ```
-hive> create external table customer_text(id string, fname string, lname string) STORED AS PARQUET location 's3a://parquet/'
+hive> create external table customer_pq(id BIGINT, fname string, lname string) STORED AS PARQUET location 's3a://parquet/';
 ```
 
 ## Python
@@ -105,6 +108,26 @@ Read data from Pandas:
 $ python read.py
 ```
 
+## Using Beeline
+
+Start Hive Server:
+
+```bash
+$ docker-compose exec hive hiveserver2
+```
+
+Enter beeline shell:
+
+```bash
+docker-compose exec hive beeline
+```
+
+In Beeline shell, connect to Hive2:
+
+```
+beeline> !connect jdbc:hive2://hive:10000/default '' ''
+```
+
 ## Docker
 
 ### Build Presto image
@@ -114,6 +137,8 @@ docker build -f prestodb/Dockerfile . -t prestodb:latest
 ```
 
 ### Build Hadoop+Hive image
+
+> This is outdated.
 
 Customize the start-up by modifying [`hive/files`](./hive/files), especially `root/setup.sh`.
 
@@ -127,16 +152,4 @@ Run:
 
 ```
 docker run --rm -p 9083:9083 -p 10000:10000 -p 1180:1180 hive:latest
-```
-
-Enter beeline shell:
-
-```bash
-docker exec -it CONTAINER_NAME beeline
-```
-
-In Beeline shell, connect to Hive2:
-
-```
-beeline> !connect jdbc:hive2://localhost:10000 '' ''
 ```

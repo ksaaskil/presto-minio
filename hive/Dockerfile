@@ -39,6 +39,9 @@ COPY ./scripts/wait-for-it.sh /usr/local/bin
 
 COPY ./files /
 
+COPY conf/hive-site.xml /opt/hive/conf/
+COPY conf/hive-env.sh /opt/hive/conf/
+
 # HDFS port
 # EXPOSE 9000 9870
 

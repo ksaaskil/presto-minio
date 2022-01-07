@@ -4,7 +4,7 @@
 
     <property>
         <name>hive.metastore.uris</name>
-        <value>thrift://hadoop-master:9083</value>
+        <value>thrift://hive:9083</value>
     </property>
 
     <!-- <property>
