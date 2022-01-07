@@ -79,6 +79,26 @@ presto:default> select * from customer_orc;
  6  | Phil  | Brune
 ```
 
+## Python
+
+Install dependencies:
+
+```bash
+$ pip install -r requirements.txt
+```
+
+Generate data:
+
+```bash
+$ python generate_data.py
+```
+
+Read data from Pandas:
+
+```bash
+$ python read.py
+```
+
 ## Docker
 
 ### Build Presto image

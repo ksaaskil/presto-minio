@@ -7,3 +7,7 @@ minio/data/.minio.sys/*
 minio/data/customer-data-orc
 
 mysql-data/
+
+.python-version
+
+.vscode/
