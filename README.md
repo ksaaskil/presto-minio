@@ -6,6 +6,8 @@ Compared to [`startburstdata/presto-minio`](https://github.com/starburstdata/pre
 
 See also [`minio/presto-minio`](https://github.com/minio/presto-minio).
 
+The configuration for Hive metastore is based on [this repository](https://github.com/treeverse/blog-presto-local).
+
 Hadoop+Hive configuration is based on [this Dockerfile from Hive](https://github.com/prestodb/docker-images/blob/master/prestodb/hive3.1-hive/Dockerfile).
 
 Presto configuration is based on the [official documentation](https://prestodb.io/docs/current/installation/deployment.html).
@@ -16,6 +18,7 @@ Presto configuration is based on the [official documentation](https://prestodb.i
 - [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
 - [Hive Metastore: Why It's Still Here and What Can Replace it?](https://lakefs.io/hive-metastore-why-its-still-here-and-what-can-replace-it/)
 - [Quick Guide for running Presto Locally on S3](https://lakefs.io/the-quick-guide-for-running-presto-locally-on-s3/)
+- [`blog-presto-local`](https://github.com/treeverse/blog-presto-local): The accompanying repository
 
 ##  Running full stack
 
