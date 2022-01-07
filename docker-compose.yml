@@ -27,14 +27,15 @@ services:
   hive:
     build: hive
     hostname: hive
+    container_name: hive
     environment:
       DB_URI: mariadb:3306
-    container_name: presto
     depends_on:
       - mariadb
   mariadb:
     image: mariadb:10
     hostname: mariadb
+    container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_USER: admin
