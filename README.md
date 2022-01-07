@@ -79,6 +79,12 @@ presto:default> select * from customer_orc;
  6  | Phil  | Brune
 ```
 
+### Parquet
+
+```
+hive> create external table customer_text(id string, fname string, lname string) STORED AS PARQUET location 's3a://parquet/'
+```
+
 ## Python
 
 Install dependencies:
