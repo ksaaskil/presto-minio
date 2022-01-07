@@ -17,14 +17,32 @@ services:
   #     - './hadoop/core-site.xml:/etc/hadoop/conf/core-site.xml'
   #     - './hadoop/lib/json-udf-1.3.8-jar-with-dependencies.jar:/usr/lib/hive/lib/json-udf-1.3.8-jar-with-dependencies.jar'
   #     - './hadoop/lib/json-serde-1.3.8-jar-with-dependencies.jar:/usr/lib/hive/lib/json-serde-1.3.8-jar-with-dependencies.jar'
-  hadoop-master:
-    hostname: hadoop-master
-    build:
-      context: .
-      dockerfile: hive/Dockerfile
-    container_name: hadoop-master
-    ports:
-      - '9870:9870'
+  # hadoop-master:
+  #   hostname: hadoop-master
+  #   build:
+  #     context: hadoop
+  #   container_name: hadoop-master
+  #   ports:
+  #     - '9870:9870'
+  hive:
+    build: hive
+    hostname: hive
+    environment:
+      DB_URI: mariadb:3306
+    container_name: presto
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb:10
+    hostname: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: metastore_db
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mariadb.conf:/etc/mysql/conf.d/mariadb.conf
   # hive:
   #   hostname: hive
   #   build:

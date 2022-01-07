@@ -17,7 +17,7 @@
 -->
 <configuration>
 
-    <!-- <property>
+    <property>
         <name>fs.defaultFS</name>
         <value>hdfs://hadoop-master:8020</value>
     </property>
@@ -26,59 +26,59 @@
         <name>fs.default.name</name>
         <value>hdfs://hadoop-master:9000</value>
     </property>
- -->
+
     <!-- OOZIE proxy user setting -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.oozie.hosts</name>
         <value>*</value>
     </property>
     <property>
         <name>hadoop.proxyuser.oozie.groups</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- HTTPFS proxy user setting -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.httpfs.hosts</name>
         <value>*</value>
     </property>
     <property>
         <name>hadoop.proxyuser.httpfs.groups</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- Llama proxy user setting -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.llama.hosts</name>
         <value>*</value>
     </property>
     <property>
         <name>hadoop.proxyuser.llama.groups</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- Hue proxy user setting -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.hue.hosts</name>
         <value>*</value>
     </property>
     <property>
         <name>hadoop.proxyuser.hue.groups</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- Mapred proxy user setting -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.mapred.hosts</name>
         <value>*</value>
     </property>
     <property>
         <name>hadoop.proxyuser.mapred.groups</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- Hive impersonation -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.hive.hosts</name>
         <value>*</value>
     </property>
@@ -86,10 +86,10 @@
     <property>
         <name>hadoop.proxyuser.hive.groups</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- Hdfs impersonation -->
-    <!-- <property>
+    <property>
         <name>hadoop.proxyuser.hdfs.groups</name>
         <value>*</value>
     </property>
@@ -97,7 +97,7 @@
     <property>
         <name>hadoop.proxyuser.hdfs.hosts</name>
         <value>*</value>
-    </property> -->
+    </property>
 
     <!-- Minio properties -->
     <property>

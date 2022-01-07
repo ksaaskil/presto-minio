@@ -14,24 +14,25 @@ Presto configuration is based on the [official documentation](https://prestodb.i
 
 - [Interactive SQL query with Apache Presto on MinIO Cloud Storage](https://blog.min.io/interactive-sql-query-with-presto-on-minio-cloud-storage/)
 - [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
+- [Hive Metastore: Why It's Still Here and What Can Replace it?](https://lakefs.io/hive-metastore-why-its-still-here-and-what-can-replace-it/)
+- [Quick Guide for running Presto Locally on S3](https://lakefs.io/the-quick-guide-for-running-presto-locally-on-s3/)
 
 ##  Running full stack
 
-Run `docker-compose up --abort-on-container-exit`.
+Run `docker-compose build && docker-compose up --abort-on-container-exit`.
 
 Docker Compose publishes the following ports:
 
 - Minio Browser: [`http://127.0.0.1:9001/`](http://localhost:9001).
 - Presto WebUI: [`http://127.0.0.1:8080/`](http://localhost:8080)
-- HDFS: [`http://localhost:9870`](http://localhost:9870)
 
-Use `docker exec -it presto /usr/local/bin/presto` to connect to Presto (see usage below).
+Use `docker-compose exec presto /usr/local/bin/presto` to connect to Presto (see usage below).
 
 ## Usage
 
 First create a table in the Hive metastore. Note that the location `s3a://customer-data-text/` points to data that's been mounted to the Minio container.
 
-Run `docker exec -it hadoop-master hive` and create a table:
+Run `docker-compose exec hive hive` and create a table:
 
 ```
 hive> use default;
@@ -39,7 +40,7 @@ hive> create external table customer_text(id string, fname string, lname string)
 hive> select * from customer_text;
 ```
 
-Next, query the data from Presto. Run `docker exec -it presto /usr/local/bin/presto` and make queries:
+Next, query the data from Presto. Run `docker-compose exec presto /usr/local/bin/presto` and make queries:
 
 ```
 presto> use minio.default;

@@ -23,29 +23,24 @@ RUN mkdir /opt/hive/auxlib && \
     curl -o /opt/hive/auxlib/aws-java-sdk-core-$AWS_SDK_VERSION.jar https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-core/$AWS_SDK_VERSION/aws-java-sdk-core-$AWS_SDK_VERSION.jar && \
     curl -o /opt/hive/auxlib/aws-java-sdk-s3-$AWS_SDK_VERSION.jar https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-s3/$AWS_SDK_VERSION/aws-java-sdk-s3-$AWS_SDK_VERSION.jar
 
+RUN apt-get install -y mariadb-server supervisor
+
 ENV HADOOP_HOME=/opt/hadoop
 ENV HIVE_HOME=/opt/hive
 ENV HADOOP_CLASSPATH=${HADOOP_HOME}/share/hadoop/tools/lib/*
 ENV PATH=${HIVE_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
 
-# COPY ./conf/core-site.xml /opt/hadoop/conf/core-site.xml
-# COPY ./conf/hdfs-site.xml /opt/hadoop/conf
-# COPY ./conf/hadoop-env.sh /opt/hadoop/conf
-# COPY ./conf/hive-site.xml /opt/hive/conf/hive-site.xml
-# COPY ./conf/hive-env.sh /opt/hive/conf
-
-COPY ./scripts/entrypoint.sh /usr/local/bin
-COPY ./scripts/wait-for-it.sh /usr/local/bin
-
 COPY ./files /
 
+# Run setup script
+RUN /root/setup.sh
+
 # HDFS port
-# EXPOSE 9000 9870
+EXPOSE 9000 9870
 
 # HIVE Metastore port
 EXPOSE 9083 10000
 
 EXPOSE 1180
 
-# CMD /usr/local/bin/entrypoint.sh
-CMD /usr/local/bin/entrypoint.sh
+CMD /root/entrypoint.sh
